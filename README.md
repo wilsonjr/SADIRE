@@ -76,7 +76,7 @@ samples = model.fit_transform(embedding)
 
 SADIRE on the MNIST dataset.
 
-
+![SADIRE on MNIST](https://raw.githubusercontent.com/wilsonjr/SADIRE/master/docs/artwork/example-sadire.png)
 
 
 ### Support 
