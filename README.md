@@ -1,13 +1,14 @@
 # SADIRE: Sampling from scatter-plot visualizations
 
+![SADIRE on MNIST](https://raw.githubusercontent.com/wilsonjr/SADIRE/master/docs/artwork/example-sadire.png)
+
 Scatter plot-based representations of dimensionality reduction (such as t-SNE and UMAP) can help us to understand various patterns in high-dimensional datasets. However, due to the huge size of datasets in practical applications, these representations often result in cluttered layouts. With SADIRE, you can reduce the size of the dataset while preserving the context and structural relations imposed by dimensionality reduction techniques.
 
 
 ## Requirements
 	
 SADIRE uses a QuadTree for selecting representative data points, we chose Pyqtree for this matter:
-
-	* [Pyqtree](https://github.com/karimbahgat/Pyqtree)
+ * [Pyqtree](https://github.com/karimbahgat/Pyqtree)
 
 ## Instalation
 
@@ -74,9 +75,8 @@ samples = model.fit_transform(embedding)
 
 ## Example
 
-SADIRE on the MNIST dataset.
+See SADIRE on the MNIST dataset on top.
 
-![SADIRE on MNIST](https://raw.githubusercontent.com/wilsonjr/SADIRE/master/docs/artwork/example-sadire.png)
 
 
 ### Support 
