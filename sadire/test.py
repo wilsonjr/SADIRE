@@ -54,9 +54,6 @@ y = np.load('MNIST_10500_label.npy').astype(int)
 reducer = umap.UMAP(random_state=0)
 emb = reducer.fit_transform(X)
 
-
-emb = normalizeVertex(emb)
-print(emb)
 plt.scatter(emb[:, 0], emb[:, 1], c=y)
 plt.show()
 plt.clf()

@@ -6,7 +6,7 @@ with open('README.md', 'r') as f:
 setup(
 	name='sadire',
 	packages=find_packages(include=['sadire']),
-	version='0.1.0',
+	version='0.1.5',
 	description='Sampling from scatter-plot visualizations',
 	long_description=long_description,
     long_description_content_type='text/markdown',

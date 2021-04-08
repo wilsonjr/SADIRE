@@ -7,7 +7,7 @@ class SADIRE(object):
 	"""docstring for SADIRE"""
 	
 
-	def __init__(self, alpha, beta, type_search=1):
+	def __init__(self, alpha, beta, type_search=1, normalize=True, begin=10, end=650):
 		super(SADIRE, self).__init__()
 		self.alpha = alpha
 		self.size = beta 
@@ -24,11 +24,14 @@ class SADIRE(object):
 	def fit_transform(self, X):
 
 		self.check_data(X)
+		X_copy = np.copy(X)
+		if self.normalize:
+			X_copy = _normalizeVertex(X_copy, self.begin, self.end)
 
-		max_x, max_y = X.max(axis=0)
+		max_x, max_y = X_copy.max(axis=0)
 		quadtree = Index(bbox=[0, 0, max_x+10, max_y+10])
 
-		for i, x in enumerate(X):
+		for i, x in enumerate(X_copy):
 			bbox = (x[0], x[1], x[0], x[1])
 			quadtree.insert(item={'point': x, 'bbox': bbox, 'id': i}, bbox=bbox)
 
@@ -165,7 +168,40 @@ class SADIRE(object):
 			return points[random.randint(0, len(points)-1)] 
 
 
+	def _normalizeVertex(coords, begin=10, end=650):
+		maxX = coords[0][0]
+		minX = coords[0][0]
+		maxY = coords[0][1]
+		minY = coords[0][1]
 
+		for i in range(len(coords)):
+			if maxX < coords[i][0]:
+				maxX = coords[i][0]
+			elif minX > coords[i][0]:
+				minX = coords[i][0]
+
+			if maxY < coords[i][1]:
+				maxY = coords[i][1]
+			elif minY > coords[i][1]:
+				minY = coords[i][1]
+	    
+		endX = ((maxX - minX) * end);
+		if maxY != minY:
+			endX = ((maxX - minX) * end) / (maxY - minY)
+
+
+		for i in range(len(coords)):
+			if maxX != minX:
+				coords[i][0] = (((coords[i][0] - minX) / (maxX - minX)) * (endX - begin)) + begin + 70
+			else:
+				coords[i][0] = begin + 70
+
+			if maxY != minY:
+				coords[i][1] = ((((coords[i][1] - minY) / (maxY - minY)) * (end - begin)) + begin) + 70
+			else:
+				coords[i][1] = begin + 70
+
+		return coords
 
 
 		
