@@ -13,7 +13,9 @@ class SADIRE(object):
 		self.size = beta 
 		self.size_search = 1
 		self.type_search = type_search
-
+		self.normalize = normalize
+		self.begin = begin
+		self.end = end
 
 	def check_data(self, X):
 		if not isinstance(X, np.ndarray):
