@@ -28,7 +28,7 @@ class SADIRE(object):
 		self.check_data(X)
 		X_copy = np.copy(X)
 		if self.normalize:
-			X_copy = _normalizeVertex(X_copy, self.begin, self.end)
+			X_copy = self._normalizeVertex(X_copy, self.begin, self.end)
 
 		max_x, max_y = X_copy.max(axis=0)
 		quadtree = Index(bbox=[0, 0, max_x+10, max_y+10])
@@ -170,7 +170,7 @@ class SADIRE(object):
 			return points[random.randint(0, len(points)-1)] 
 
 
-	def _normalizeVertex(coords, begin=10, end=650):
+	def _normalizeVertex(self, coords, begin=10, end=650):
 		maxX = coords[0][0]
 		minX = coords[0][0]
 		maxY = coords[0][1]
